@@ -11,7 +11,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
  
 
 Original
-C++
+C
  **Example 1:** 
 
 ```
@@ -41,36 +41,30 @@ Explanation: 2 does not exist in nums so return -1
 
 ## Solution
 
-**Language:** C++  
+**Language:** C  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 31.3 MB (beats 61.96%)  
-**Submitted:** 2026-11-25T13:50:48.893Z  
+**Memory:** 9.9 MB (beats 65.50%)  
+**Submitted:** 2026-11-25T14:32:39.866Z  
 
-```cpp
-class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        int left = 0;
-        int right = nums.size() - 1;
+```c
+int search(int* nums, int numsSize, int target) {
+    int left = 0;
+    int right = numsSize - 1;
 
-        while (left <= right) {
-            // Prevents potential integer overflow compared to (left + right) / 2
-            int mid = left + (right - left) / 2;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
 
-            if (nums[mid] == target) {
-                return mid; // Target found
-            } 
-            else if (nums[mid] < target) {
-                left = mid + 1; // Discard the left half
-            } 
-            else {
-                right = mid - 1; // Discard the right half
-            }
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
-
-        return -1; // Target does not exist in nums
     }
-};
+
+    return -1;
+}
 ```
 
 ---
